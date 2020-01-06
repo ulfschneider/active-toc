@@ -70,6 +70,7 @@ ActiveToc = (function () {
         links = [...tocContainer.querySelectorAll('a')];
         headings = links.map(link => {
             let id = link.getAttribute('href');
+            console.log(id);
             return document.querySelector(id);
         });
 
