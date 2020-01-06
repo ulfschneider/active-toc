@@ -16,7 +16,7 @@ Make your table of contents active.
 
 Please review the [Active TOC Playground][6] to see the usage.
 
-Install it in your Node project with 
+Install ActiveToc in your Node project with 
 
 <pre>
 npm i active-toc
