@@ -57,7 +57,6 @@ ActiveToc = (function () {
 
         if (document.querySelector && window.IntersectionObserver) {
             if (containerId) {
-                console.log(containerId);
                 tocContainer = document.querySelector(containerId);
                 if (!tocContainer) {
                     tocContainer = document.getElementsByTagName('header')[0];
