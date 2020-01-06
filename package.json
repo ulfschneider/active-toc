@@ -4,8 +4,22 @@
   "description": "Let scrolling highlight your toc entries",
   "main": "active-toc.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "minify active-toc.js > active-toc.min.js && documentation build active-toc.js -f md > README.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ulfschneier/active-toc.git"
   },
   "author": "Ulf Schneider",
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ulfschneider/active-toc/issues"
+  },
+  "homepage": "https://github.com/ulfschneider/active-toc#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "documentation": "^12.1.4",
+    "minify": "^5.0.0"
+  }
 }

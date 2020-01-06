@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>ActiveToc Example</title>
+
+    <script src="active-toc.min.js"></script>
+</head>
+<style>
+    a {
+        color: unset;
+        text-decoration: unset;
+        height: 3.5rem;
+        display: block;
+        margin-left: 1rem;
+        margin-top: 1rem;
+    }
+
+    body {
+        margin: 0;
+        margin-left: 12rem;
+        margin-right: 1rem;
+        line-height: 1.62rem;
+        font-family: sans-serif;
+        color: #333;
+    }
+
+    header {
+        position: fixed;
+        width: 10rem;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        color: white;
+        background: #333;
+    }
+
+    .is-active,
+    .is-visible {
+        font-weight: bold;
+    }
+
+    .is-active:after {
+        content: " active";
+        display: block;
+    }
+
+    .is-visible:after {
+        content: " visible";
+        display: block;
+    }
+
+    .content {
+        height: 600px;
+        border-left: 3px dashed #333;
+    }
+</style>
+
+<body>
+    <header id="navigation">
+        <a href="#title">Title</a>
+        <a href="#heading1">Heading 1</a>
+        <a href="#heading2">Heading 2</a>
+        <a href="#heading3">Heading 3</a>
+        <a href="#heading4">Heading 4</a>
+        <a href="#heading5">Heading 5</a>
+    </header>
+    <h1 id="title">Please scroll down to see ActiveToc in action</h1>
+    <div class="content"></div>
+    <h2 id="heading1">Heading 1</h2>
+    <div class="content"></div>
+    <h2 id="heading2">Heading 2</h2>
+    <div class="content"></div>
+    <h2 id="heading3">Heading 3</h2>
+    <div class="content"></div>
+    <h2 id="heading4">Heading 4</h2>
+    <div class="content"></div>
+    <h2 id="heading5">Heading 5</h2>
+    <div class="content"></div>
+</body>
+<script>
+    ActiveToc.init({ tocContainer: '#navigation' });
+</script>
