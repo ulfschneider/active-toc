@@ -38,12 +38,12 @@ You can also use it without node, by embedding the script <code>active-toc.min.j
 
 <pre>
 &lt;script src="active-toc.min.js">&lt;/script>
-</pre> 
-
- Without any arguments, <code>ActiveToc.init()</code> will search for a container
- with <code>id="header"</code> or a tag <code>header</code> and will make that container the active toc.
+</pre>
 
 ## init
+
+Without defining the tocContainer a call like <code>ActiveToc.init()</code> will search for a container
+with <code>id="header"</code> or a tag <code>header</code> and will make that container the active toc.
 
 ### Parameters
 

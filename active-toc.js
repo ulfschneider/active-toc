@@ -27,8 +27,6 @@
  * <pre>
  * &lt;script src="active-toc.min.js">&lt;/script>
  * </pre> 
- *  Without any arguments, <code>ActiveToc.init()</code> will search for a container
- *  with <code>id="header"</code> or a tag <code>header</code> and will make that container the active toc.
  */
 ActiveToc = (function () {
 
@@ -161,7 +159,9 @@ ActiveToc = (function () {
 try {
     if (module) {
         module.exports = {
-            /**
+            /**  
+            * Without defining the tocContainer a call like <code>ActiveToc.init()</code> will search for a container
+            * with <code>id="header"</code> or a tag <code>header</code> and will make that container the active toc.
             * @param {*} [settings]
             * @param {String} [settings.tocContainer] - Specify the id of the container that contains links to the headings inside of your document. Default is 'header'. If not specified will search for the html <code>header</code> tag.
             */
