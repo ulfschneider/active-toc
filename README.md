@@ -14,7 +14,7 @@ ActiveToc
 
 Make your table of contents active.
 
-Please review the [Active TOC Playground][6] to see the usage.
+Please review the [ActiveToc example][6] to see the usage.
 
 Install ActiveToc in your Node project with 
 
@@ -38,12 +38,17 @@ You can also use it without node, by embedding the script <code>active-toc.min.j
 
 <pre>
 &lt;script src="active-toc.min.js">&lt;/script>
-</pre>
+</pre> 
+
+ActiveToc is using the IntersectionObserver API.
 
 ## init
 
 Without defining the tocContainer a call like <code>ActiveToc.init()</code> will search for a container
 with <code>id="header"</code> or a tag <code>header</code> and will make that container the active toc.
+That container has to contain a set of links to headings inside of the document. Each heading needs to be identified with the id attribute.
+When scrolling contents or resizing the window, the links in the tocContainer will be assigned the CSS class named <code>is-visible</code> if the assiciated heading of the link is visible.
+The link will be assigned the CSS class name <code>is-active</code> if the heading is not visible, but still can be considered active.
 
 ### Parameters
 
@@ -68,6 +73,6 @@ Do no longer observe the headings of the document
 
 [5]: #unobserve
 
-[6]: https://htmlpreview.github.io/?https://github.com/ulfschneider/active-toc/blob/master/active-toc.html
+[6]: https://github.com/ulfschneider/active-toc/active-toc.html
 
 [7]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String

@@ -3,7 +3,7 @@
  *
  * Make your table of contents active.
  * 
- * Please review the [Active TOC Playground](https://htmlpreview.github.io/?https://github.com/ulfschneider/active-toc/blob/master/active-toc.html) to see the usage.
+ * Please review the [ActiveToc example](https://github.com/ulfschneider/active-toc/active-toc.html) to see the usage.
  * 
  * Install ActiveToc in your Node project with 
  * <pre>
@@ -27,6 +27,8 @@
  * <pre>
  * &lt;script src="active-toc.min.js">&lt;/script>
  * </pre> 
+ * 
+ * ActiveToc is using the IntersectionObserver API.
  */
 ActiveToc = (function () {
 
@@ -70,7 +72,6 @@ ActiveToc = (function () {
         links = [...tocContainer.querySelectorAll('a')];
         headings = links.map(link => {
             let id = link.getAttribute('href');
-            console.log(id);
             return document.querySelector(id);
         });
 
@@ -163,6 +164,9 @@ try {
             /**  
             * Without defining the tocContainer a call like <code>ActiveToc.init()</code> will search for a container
             * with <code>id="header"</code> or a tag <code>header</code> and will make that container the active toc.
+            * That container has to contain a set of links to headings inside of the document. Each heading needs to be identified with the id attribute.
+            * When scrolling contents or resizing the window, the links in the tocContainer will be assigned the CSS class named <code>is-visible</code> if the assiciated heading of the link is visible.
+            * The link will be assigned the CSS class name <code>is-active</code> if the heading is not visible, but still can be considered active.
             * @param {*} [settings]
             * @param {String} [settings.tocContainer] - Specify the id of the container that contains links to the headings inside of your document. Default is 'header'. If not specified will search for the html <code>header</code> tag.
             */
