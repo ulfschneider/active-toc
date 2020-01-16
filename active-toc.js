@@ -136,9 +136,13 @@ ActiveToc = (function () {
         if (!hasVisible) {
             for (let i = headings.length - 1; i > 0; i--) {
                 if (headings[i] && headings[i].offsetTop <= window.pageYOffset) {
-                    tocContainer.querySelector(
+                    let actives = tocContainer.querySelectorAll(
                         `a[href="#${headings[i].id}"]`
-                    ).classList.add('is-active');
+                    );
+                    actives.forEach(active => {
+                        active.classList.add('is-active');
+                    })
+
                     break;
                 }
             }
