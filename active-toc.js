@@ -108,14 +108,17 @@ ActiveToc = (function () {
     function handleObserver(entries, observer) {
         entries.forEach(entry => {
             let href = `#${entry.target.getAttribute('id')}`;
-            let link = links.find(l => l.getAttribute('href') === href);
 
-            if (entry.isIntersecting) {
-                link.classList.add('is-visible')
-                previousSection = entry.target.getAttribute('id');
-            } else {
-                link.classList.remove('is-visible');
-            }
+            links.forEach(link => {
+                if (link.getAttribute('href') === href) {
+                    if (entry.isIntersecting) {
+                        link.classList.add('is-visible')
+                        previousSection = entry.target.getAttribute('id');
+                    } else {
+                        link.classList.remove('is-visible');
+                    }
+                }
+            });
 
             highlightActive();
         });
