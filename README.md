@@ -47,8 +47,9 @@ ActiveToc is using the IntersectionObserver API.
 Without defining the tocContainer a call like <code>ActiveToc.init()</code> will search for a container
 with <code>id="header"</code> or a tag <code>header</code> and will make that container the active toc.
 That container has to contain a set of links to headings inside of the document. Each heading needs to be identified with the id attribute.
-When scrolling contents or resizing the window, the links in the tocContainer will be assigned the CSS class named <code>is-visible</code> if the assiciated heading of the link is visible.
+When scrolling contents or resizing the window, the links in the tocContainer will be assigned the CSS class named <code>is-visible</code> if the associated heading of the link is visible.
 The link will be assigned the CSS class name <code>is-active</code> if the heading is not visible, but still can be considered active.
+The link will be assigned the CSS class name <code>is-highlight</code> as the single one that´s suggested to be highlighted (to avoid highlighting multiple entries).
 
 ### Parameters
 

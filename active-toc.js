@@ -110,43 +110,63 @@ ActiveToc = (function () {
             let href = `#${entry.target.getAttribute('id')}`;
 
             links.forEach(link => {
+                link.classList.remove('is-highlight');
+                link.classList.remove('is-active');
+
                 if (link.getAttribute('href') === href) {
                     if (entry.isIntersecting) {
                         link.classList.add('is-visible')
-                        previousSection = entry.target.getAttribute('id');
                     } else {
                         link.classList.remove('is-visible');
                     }
                 }
             });
 
-            highlightActive();
+            indicateActive();
+            indicateHighlight();
         });
     }
 
-    function highlightActive() {
-        let hasVisible = false;
-        links.forEach(link => {
-            link.classList.remove('is-active');
-            if (link.classList.contains('is-visible')) {
-                hasVisible = true;
+    function indicateActive() {
+        for (let i = headings.length - 1; i >= 0; i--) {
+            if (headings[i] && headings[i].offsetTop <= window.pageYOffset) {
+                let actives = tocContainer.querySelectorAll(
+                    `a[href="#${headings[i].id}"]`
+                );
+                actives.forEach(active => {
+                    active.classList.add('is-active');
+                })
+                break;
             }
-        });
+        }
+    }
 
-        if (!hasVisible) {
-            for (let i = headings.length - 1; i > 0; i--) {
-                if (headings[i] && headings[i].offsetTop <= window.pageYOffset) {
-                    let actives = tocContainer.querySelectorAll(
-                        `a[href="#${headings[i].id}"]`
-                    );
-                    actives.forEach(active => {
-                        active.classList.add('is-active');
-                    })
+    function indicateHighlight() {
+        let firstMatch;
+        for (let link of links) {
+            //check if a visible link exists 
+            //and highlight the first one 
+            if (link.classList.contains('is-visible')) {
 
-                    break;
+                if (!firstMatch) {
+                    firstMatch = link.href;
+                }
+
+                if (firstMatch === link.href) {
+                    link.classList.add('is-highlight');
                 }
             }
         }
+
+        if (!firstMatch) {
+            //no visible link exists 
+            //mark all actives to be visible
+            let actives = tocContainer.querySelectorAll('a.is-active');
+            actives.forEach(active => {
+                active.classList.add('is-highlight');
+            });
+        }
+
     }
 
     //public API
@@ -172,8 +192,9 @@ try {
             * Without defining the tocContainer a call like <code>ActiveToc.init()</code> will search for a container
             * with <code>id="header"</code> or a tag <code>header</code> and will make that container the active toc.
             * That container has to contain a set of links to headings inside of the document. Each heading needs to be identified with the id attribute.
-            * When scrolling contents or resizing the window, the links in the tocContainer will be assigned the CSS class named <code>is-visible</code> if the assiciated heading of the link is visible.
+            * When scrolling contents or resizing the window, the links in the tocContainer will be assigned the CSS class named <code>is-visible</code> if the associated heading of the link is visible.
             * The link will be assigned the CSS class name <code>is-active</code> if the heading is not visible, but still can be considered active.
+            * The link will be assigned the CSS class name <code>is-highlight</code> as the single one that´s suggested to be highlighted (to avoid highlighting multiple entries).
             * @param {*} [settings]
             * @param {String} [settings.tocContainer] - Specify the id of the container that contains links to the headings inside of your document. Default is 'header'. If not specified will search for the html <code>header</code> tag.
             */

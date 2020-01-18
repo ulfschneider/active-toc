@@ -37,8 +37,8 @@
         font-weight: normal;
     }
 
-    .is-active,
-    .is-visible {
+
+    .is-highlight {
         font-weight: bold;
     }
 
@@ -54,6 +54,13 @@
         font-weight: normal;
         display: block;
         color: red;
+    }
+
+    .is-highlight:after {
+        content: " highlight";
+        font-weight: normal;
+        display: block;
+        color: green;
     }
 
     .content {
