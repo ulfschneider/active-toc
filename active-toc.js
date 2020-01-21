@@ -3,7 +3,7 @@
  *
  * Make your table of contents active.
  * 
- * Please review the [ActiveToc example](https://github.com/ulfschneider/active-toc/active-toc.html) to see the usage.
+ * Please download the repo and open the file <code>active-toc.html</code> to see the usage.
  * 
  * Install ActiveToc in your Node project with 
  * <pre>

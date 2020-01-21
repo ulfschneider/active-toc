@@ -14,7 +14,7 @@ ActiveToc
 
 Make your table of contents active.
 
-Please review the [ActiveToc example][6] to see the usage.
+Please download the repo and open the file <code>active-toc.html</code> to see the usage.
 
 Install ActiveToc in your Node project with 
 
@@ -54,7 +54,7 @@ The link will be assigned the CSS class name <code>is-highlight</code> as the si
 ### Parameters
 
 -   `settings` **any?** 
-    -   `settings.tocContainer` **[String][7]?** Specify the id of the container that contains links to the headings inside of your document. Default is 'header'. If not specified will search for the html <code>header</code> tag.
+    -   `settings.tocContainer` **[String][6]?** Specify the id of the container that contains links to the headings inside of your document. Default is 'header'. If not specified will search for the html <code>header</code> tag.
 
 ## destroy
 
@@ -74,6 +74,4 @@ Do no longer observe the headings of the document
 
 [5]: #unobserve
 
-[6]: https://github.com/ulfschneider/active-toc/active-toc.html
-
-[7]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[6]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
