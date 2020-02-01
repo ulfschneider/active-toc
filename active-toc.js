@@ -29,7 +29,7 @@
  * &lt;script src="active-toc.min.js">&lt;/script>
  * </pre> 
  * 
- * ActiveToc is using the IntersectionObserver API.
+ * ActiveToc is using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API">IntersectionObserver API</a>.
  */
 ActiveToc = (function () {
 
