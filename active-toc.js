@@ -85,7 +85,7 @@ ActiveToc = (function () {
                 }
             });
         } else {
-            console.error('ActiveToc cannot run on this device because querySelector or intersectionObserver are not supported.');
+            console.error('ActiveToc cannot run on this device because the Intersection Observer API is not supported.');
         }
     }
 
