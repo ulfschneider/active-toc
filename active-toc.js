@@ -64,27 +64,29 @@ ActiveToc = (function () {
                 }
 
                 if (!tocContainer) {
-                    console.error('TocContainer with either id=[' + containerId + '] or tag=<header> could not be found in DOM');
+                    console.error('A toc container with id=[' + containerId + '] or the tag=<header> could not be found in DOM');
                     return;
                 }
             }
-        }
 
-        links = [...tocContainer.querySelectorAll('a')];
-        headings = links.map(link => {
-            let id = link.getAttribute('href');
-            return document.querySelector(id);
-        });
+            links = [...tocContainer.querySelectorAll('a')];
+            headings = links.map(link => {
+                let id = link.getAttribute('href');
+                return document.querySelector(id);
+            });
 
-        let intersectionOptions = {
-            rootMargin: '0px'
-        }
-        observer = new IntersectionObserver(handleObserver, intersectionOptions);
-        headings.forEach(heading => {
-            if (heading) {
-                observer.observe(heading);
+            let intersectionOptions = {
+                rootMargin: '0px'
             }
-        });
+            observer = new IntersectionObserver(handleObserver, intersectionOptions);
+            headings.forEach(heading => {
+                if (heading) {
+                    observer.observe(heading);
+                }
+            });
+        } else {
+            console.error('ActiveToc cannot run on this device because querySelector or intersectionObserver are not supported.');
+        }
     }
 
     function unobserve() {
@@ -100,10 +102,12 @@ ActiveToc = (function () {
     function destroy() {
         unobserve();
 
-        links.forEach(link => {
-            link.classList.remove('is-visible');
-            link.classList.remove('is-active');
-        });
+        if (links) {
+            links.forEach(link => {
+                link.classList.remove('is-visible');
+                link.classList.remove('is-active');
+            });
+        }
     }
 
     function handleObserver(entries, observer) {
