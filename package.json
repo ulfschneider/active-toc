@@ -1,9 +1,12 @@
 {
   "name": "active-toc",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "Let scrolling highlight your toc entries",
   "main": "active-toc.js",
   "scripts": {
+    "start": "run-p \"watch:*\"",
+    "serve": "run-p \"watch:*\"",
+    "watch:serve": "browser-sync start --server --files 'active-toc.*' 'index.html'",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "minify active-toc.js > active-toc.min.js && documentation build active-toc.js -f md > README.md"
   },
@@ -19,7 +22,9 @@
   "homepage": "https://github.com/ulfschneider/active-toc#readme",
   "dependencies": {},
   "devDependencies": {
+    "browser-sync": "^2.26.7",
     "documentation": "^12.1.4",
-    "minify": "^5.0.0"
+    "minify": "^5.0.0",
+    "npm-run-all": "^4.1.5"
   }
 }
