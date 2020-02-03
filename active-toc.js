@@ -70,9 +70,16 @@ ActiveToc = (function () {
             }
 
             links = [...tocContainer.querySelectorAll('a')];
-            headings = links.map(link => {
+            headings = [];
+            links.forEach(link => {
                 let id = link.getAttribute('href');
-                return document.querySelector(id);
+                if (id && id.startsWith('#')) {
+                    try {
+                        headings.push(document.querySelector(id));
+                    } catch (e) {
+                        console.warn('Heading with id=[' + id + '] not found in document');
+                    }
+                }
             });
 
             let intersectionOptions = {
