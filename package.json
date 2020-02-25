@@ -1,6 +1,6 @@
 {
   "name": "active-toc",
-  "version": "0.4.8",
+  "version": "0.4.9",
   "description": "Let scrolling highlight your toc entries",
   "main": "active-toc.js",
   "scripts": {
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ulfschneier/active-toc.git"
+    "url": "git+https://github.com/ulfschneider/active-toc.git"
   },
   "author": "Ulf Schneider",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ulfschneider/active-toc/issues"
   },
-  "homepage": "https://github.com/ulfschneider/active-toc#readme",
+  "homepage": "https://ulf.codes/active-toc",
   "dependencies": {},
   "devDependencies": {
     "browser-sync": "^2.26.7",
