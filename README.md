@@ -14,7 +14,7 @@ ActiveToc
 
 Make your table of contents active.
 
-Please visit <a href="https://ulf.codes/active-toc">ulf.codes/active-toc</a> or 
+Please visit <a href="https://ulf.codes/tools/active-toc/">ulf.codes/tools/active-toc/</a> or 
 download the repo and open the file <code>index.html</code> to see the usage.
 
 Install ActiveToc in your Node project with 
