@@ -1,6 +1,6 @@
 {
   "name": "active-toc",
-  "version": "0.4.10",
+  "version": "0.4.11",
   "description": "Let scrolling highlight your toc entries",
   "main": "active-toc.js",
   "scripts": {
@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/ulfschneider/active-toc/issues"
   },
-  "homepage": "https://ulf.codes/active-toc",
+  "homepage": "https://ulf.codes/tools/active-toc/",
   "dependencies": {},
   "devDependencies": {
     "browser-sync": "^2.26.7",
