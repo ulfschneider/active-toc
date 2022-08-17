@@ -45,26 +45,26 @@ ActiveToc = (function () {
     }
 
     function init(settings) {
-        let containerId;
+        let containerSelector;
         config = transferConfig(settings);
 
         if (!config.tocContainer) {
-            containerId = '#header';
+            containerSelector = '#header';
         } else if (typeof config.tocContainer == 'string') {
-            containerId = config.tocContainer.charAt(0) == '#' ? config.tocContainer : '#' + config.tocContainer;
+            containerSelector = config.tocContainer;
         } else {
             tocContainer = config.tocContainer;
         }
 
         if (document.querySelector && window.IntersectionObserver) {
-            if (containerId) {
-                tocContainer = document.querySelector(containerId);
+            if (containerSelector) {
+                tocContainer = document.querySelector(containerSelector);
                 if (!tocContainer) {
                     tocContainer = document.getElementsByTagName('header')[0];
                 }
 
                 if (!tocContainer) {
-                    console.error('A toc container with id=[' + containerId + '] or the tag=<header> could not be found in DOM');
+                    console.error('A toc container with id=[' + containerSelector + '] or the tag=<header> could not be found in DOM');
                     return;
                 }
             }
@@ -203,12 +203,12 @@ try {
             /**  
             * Without defining the tocContainer a call like <code>ActiveToc.init()</code> will search for a container
             * with <code>id="header"</code> or a tag <code>header</code> and will make that container the active toc.
-            * That container has to contain a set of links to headings inside of the document. Each heading needs to be identified with the id attribute.
+            * That container has to hold a set of links to headings inside of the document. Each heading needs to be identified with the id attribute.
             * When scrolling contents or resizing the window, the links in the tocContainer will be assigned the CSS class named <code>is-visible</code> if the associated heading of the link is visible.
             * The link will be assigned the CSS class name <code>is-active</code> if the heading is not visible, but still can be considered active.
             * The link will be assigned the CSS class name <code>is-highlight</code> as the single one that´s suggested to be highlighted (to avoid highlighting multiple entries).
             * @param {*} [settings]
-            * @param {String} [settings.tocContainer] - Specify the id of the container that contains links to the headings inside of your document. Default is 'header'. If not specified will search for the html <code>header</code> tag.
+            * @param {String} [settings.tocContainer] - Specify the selector of the container that contains links to the headings inside of your document. Default is 'header'. If not specified the first html <code>header</code> tag will be used.
             */
             init: function (settings) {
                 if (!this.activeToc) {
