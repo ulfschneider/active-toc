@@ -47,7 +47,7 @@ ActiveToc is using the <a href="https://developer.mozilla.org/en-US/docs/Web/API
 
 Without defining the tocContainer a call like <code>ActiveToc.init()</code> will search for a container
 with <code>id="header"</code> or a tag <code>header</code> and will make that container the active toc.
-That container has to hold a set of links to headings inside of the document. Each heading needs to be identified with the id attribute.
+The container has to hold a set of links to headings inside of the document. Each heading needs to be identified with the id attribute.
 When scrolling contents or resizing the window, the links in the tocContainer will be assigned the CSS class named <code>is-visible</code> if the associated heading of the link is visible.
 The link will be assigned the CSS class name <code>is-active</code> if the heading is not visible, but still can be considered active.
 The link will be assigned the CSS class name <code>is-highlight</code> as the single one that´s suggested to be highlighted (to avoid highlighting multiple entries).
@@ -55,7 +55,7 @@ The link will be assigned the CSS class name <code>is-highlight</code> as the si
 ### Parameters
 
 -   `settings` **any?** 
-    -   `settings.tocContainer` **[String][6]?** Specify the selector of the container that contains links to the headings inside of your document. Default is 'header'. If not specified the first html <code>header</code> tag will be used.
+    -   `settings.tocContainer` **[String][6]?** Specify the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_object_model/Locating_DOM_elements_using_selectors">selector</a> of the container that holds the links to the headings inside of your document. Default is <code>#header</code>. If not specified the first html <code>header</code> tag will be used.
 
 ## destroy
 

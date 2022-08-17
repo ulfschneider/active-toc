@@ -3,31 +3,31 @@
  *
  * Make your table of contents active.
  * 
- * Please visit <a href="https://ulf.codes/active-toc">ulf.codes/active-toc</a> or 
+ * Please visit <a href="https://ulf.codes/tools/active-toc/">ulf.codes/tools/active-toc</a> or 
  * download the repo and open the file <code>index.html</code> to see the usage.
  * 
  * Install ActiveToc in your Node project with 
- * <pre>
+ * <pre><code>
  * npm i active-toc
- * </pre>
+ * </code></pre>
  * 
  * and use it inside your code via 
  * 
- * <pre>
+ * <pre><code>
  * const ActiveToc = require('active-toc');
- * </pre>
+ * </code></pre>
  * 
  * or, alternatively 
  * 
- * <pre>
+ * <pre><code>
  * import ActiveToc from 'active-toc';
- * </pre>
+ * </code></pre>
  * 
- * You can also use it without node, by embedding the script <code>active-toc.min.js</code> in your web page.
+ * You can also use it by embedding the script <code>active-toc.min.js</code> in your web page.
  * 
- * <pre>
+ * <pre><code>
  * &lt;script src="active-toc.min.js">&lt;/script>
- * </pre> 
+ * </code></pre> 
  * 
  * ActiveToc is using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API">IntersectionObserver API</a>.
  */
@@ -36,11 +36,19 @@ ActiveToc = (function () {
     let config, links, headings, observer, tocContainer;
 
     function transferConfig(settings) {
-        if (!settings) {
-            config = {};
-        } else {
-            config = settings;
+        if (typeof settings == 'string' || settings instanceof String) {
+            //the provided settings object is a string and therefore assumed to 
+            //be the selector for the container
+            return {
+                tocContainer: settings
+            }
         }
+
+        let config = Object.assign({}, settings);
+        if (!config.tocContainer) {
+            containerSelector = '#header';
+        } 
+
         return config;
     }
 
@@ -48,9 +56,7 @@ ActiveToc = (function () {
         let containerSelector;
         config = transferConfig(settings);
 
-        if (!config.tocContainer) {
-            containerSelector = '#header';
-        } else if (typeof config.tocContainer == 'string') {
+       if (typeof config.tocContainer == 'string' || config.tocContainer instanceof String) {
             containerSelector = config.tocContainer;
         } else {
             tocContainer = config.tocContainer;
@@ -64,7 +70,7 @@ ActiveToc = (function () {
                 }
 
                 if (!tocContainer) {
-                    console.error('A toc container with id=[' + containerSelector + '] or the tag=<header> could not be found in DOM');
+                    console.error('A toc container with id=[' + containerSelector + '] or the tag=<header> could not be found in the document');
                     return;
                 }
             }
@@ -92,7 +98,7 @@ ActiveToc = (function () {
                 }
             });
         } else {
-            console.error('ActiveToc cannot run on this device because the Intersection Observer API is not supported.');
+            console.error('ActiveToc cannot run on this device because the Intersection Observer API is not supported');
         }
     }
 
@@ -164,7 +170,7 @@ ActiveToc = (function () {
                     firstMatch = link.href;
                 }
 
-                if (firstMatch === link.href) {
+                if (firstMatch == link.href) {
                     link.classList.add('is-highlight');
                 }
             }
@@ -195,20 +201,23 @@ ActiveToc = (function () {
     }
 })();
 
-//////// Node Module Interface
+//////// Module Interface
 
 try {
     if (module) {
         module.exports = {
             /**  
-            * Without defining the tocContainer a call like <code>ActiveToc.init()</code> will search for a container
-            * with <code>id="header"</code> or a tag <code>header</code> and will make that container the active toc.
-            * That container has to hold a set of links to headings inside of the document. Each heading needs to be identified with the id attribute.
-            * When scrolling contents or resizing the window, the links in the tocContainer will be assigned the CSS class named <code>is-visible</code> if the associated heading of the link is visible.
-            * The link will be assigned the CSS class name <code>is-active</code> if the heading is not visible, but still can be considered active.
-            * The link will be assigned the CSS class name <code>is-highlight</code> as the single one that´s suggested to be highlighted (to avoid highlighting multiple entries).
+            * Without defining the tocContainer a call like <code>ActiveToc.init()</code> will search for an element
+            * with <code>id="header"</code> or a <code>header</code> tag and will make that element the container for the active toc.
+            * The container has to hold a set of links to headings inside of the document. Each heading needs to be identified with the id attribute.
+            * When scrolling contents or resizing the window, the links in the tocContainer will be assigned the CSS class  
+            * <ul>
+            * <li><code>is-visible</code> if the associated heading of the link is visible,</li>
+            * <li>><code>is-active</code> if the heading is not visible, but still can be considered active,</li>
+            * <li>><code>is-highlight</code> as the single one that´s suggested to be highlighted (to avoid highlighting multiple entries),</li>
+            * </ul>
             * @param {*} [settings]
-            * @param {String} [settings.tocContainer] - Specify the selector of the container that contains links to the headings inside of your document. Default is 'header'. If not specified the first html <code>header</code> tag will be used.
+            * @param {String} [settings.tocContainer] - Specify the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_object_model/Locating_DOM_elements_using_selectors">selector</a> of the container that holds the links to the headings inside of your document. Default id is <code>#header</code>. If not specified the first html <code>header</code> tag will be used.
             */
             init: function (settings) {
                 if (!this.activeToc) {
@@ -237,5 +246,5 @@ try {
 } catch (e) {
     console.log('Using ActiveToc in non-node environment');
     //in non-node environment module is not defined and therefore
-    //we will not export anything
+    //nothing is exported
 }
