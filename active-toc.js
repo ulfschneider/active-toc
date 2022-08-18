@@ -1,7 +1,6 @@
 /**
- * ActiveToc
- *
- * Make your table of contents active.
+  *
+ * Make your table of contents (toc) active.
  * 
  * Please visit <a href="https://ulf.codes/tools/active-toc/">ulf.codes/tools/active-toc</a> or 
  * download the repo and open the file <code>index.html</code> to see the usage.
@@ -46,7 +45,7 @@ ActiveToc = (function () {
 
         let config = Object.assign({}, settings);
         if (!config.tocContainer) {
-            containerSelector = '#header';
+            config.tocContainer = '#header';
         } 
 
         return config;
@@ -66,7 +65,7 @@ ActiveToc = (function () {
             if (containerSelector) {
                 tocContainer = document.querySelector(containerSelector);
                 if (!tocContainer) {
-                    tocContainer = document.getElementsByTagName('header')[0];
+                    tocContainer = document.querySelector('header');
                 }
 
                 if (!tocContainer) {
@@ -207,17 +206,17 @@ try {
     if (module) {
         module.exports = {
             /**  
-            * Without defining the tocContainer a call like <code>ActiveToc.init()</code> will search for an element
+            * Without defining the toc container a call like <code>ActiveToc.init()</code> will search for an element
             * with <code>id="header"</code> or a <code>header</code> tag and will make that element the container for the active toc.
-            * The container has to hold a set of links to headings inside of the document. Each heading needs to be identified with the id attribute.
-            * When scrolling contents or resizing the window, the links in the tocContainer will be assigned the CSS class  
+            * The container has to hold a set of links to headings (h2, h3, h4, ...) inside of the document. Each heading needs to be identified with the id attribute.
+            * When scrolling contents or resizing the window, the links in the tocContainer will be assigned a combination of the CSS classes  
             * <ul>
             * <li><code>is-visible</code> if the associated heading of the link is visible,</li>
             * <li>><code>is-active</code> if the heading is not visible, but still can be considered active,</li>
             * <li>><code>is-highlight</code> as the single one that´s suggested to be highlighted (to avoid highlighting multiple entries),</li>
             * </ul>
-            * @param {*} [settings]
-            * @param {String} [settings.tocContainer] - Specify the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_object_model/Locating_DOM_elements_using_selectors">selector</a> of the container that holds the links to the headings inside of your document. Default id is <code>#header</code>. If not specified the first html <code>header</code> tag will be used.
+            * @param {*} [settings] – Can be empty, a String, or a settings object. A String will be interpreted as a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_object_model/Locating_DOM_elements_using_selectors">selector</a> for the toc container. A settings object must contain a tocContainer property that will store the selector for the toc container.
+            * @param {String} [settings.tocContainer] - Specify the selector of the container that holds the links to the headings inside of your document. Default id is <code>#header</code>. If not specified the first html <code>header</code> tag will be used.
             */
             init: function (settings) {
                 if (!this.activeToc) {
