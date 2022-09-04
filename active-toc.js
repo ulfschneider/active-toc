@@ -46,7 +46,7 @@ ActiveToc = (function () {
         let config = Object.assign({}, settings);
         if (!config.tocContainer) {
             config.tocContainer = '#header';
-        } 
+        }
 
         return config;
     }
@@ -55,7 +55,7 @@ ActiveToc = (function () {
         let containerSelector;
         config = transferConfig(settings);
 
-       if (typeof config.tocContainer == 'string' || config.tocContainer instanceof String) {
+        if (typeof config.tocContainer == 'string' || config.tocContainer instanceof String) {
             containerSelector = config.tocContainer;
         } else {
             tocContainer = config.tocContainer;
@@ -87,10 +87,7 @@ ActiveToc = (function () {
                 }
             });
 
-            let intersectionOptions = {
-                rootMargin: '0px'
-            }
-            observer = new IntersectionObserver(handleObserver, intersectionOptions);
+            observer = new IntersectionObserver(handleObserver, config.intersectionOptions);
             headings.forEach(heading => {
                 if (heading) {
                     observer.observe(heading);
@@ -133,6 +130,9 @@ ActiveToc = (function () {
                 if (link.getAttribute('href') === href) {
                     if (entry.isIntersecting) {
                         link.classList.add('is-visible')
+                        if (config.onVisible) {
+                            config.onVisible(link);
+                        }
                     } else {
                         link.classList.remove('is-visible');
                     }
@@ -152,6 +152,9 @@ ActiveToc = (function () {
                 );
                 actives.forEach(active => {
                     active.classList.add('is-active');
+                    if (config.onActive) {
+                        config.onActive(active);
+                    }
                 })
                 break;
             }
@@ -171,17 +174,26 @@ ActiveToc = (function () {
 
                 if (firstMatch == link.href) {
                     link.classList.add('is-highlight');
+                    if (config.onHighlight) {
+                        config.onHighlight(link);
+                    }
                 }
             }
         }
 
         if (!firstMatch) {
             //no visible link exists 
-            //mark all actives to be visible
+            //mark all actives to be highlighted
             let actives = tocContainer.querySelectorAll('a.is-active');
             actives.forEach(active => {
                 active.classList.add('is-highlight');
+                if (config.onHighlight) {
+                    config.onHighlight(active);
+                }
             });
+            if (actives.length == 0 && config.offHighlight) {
+                config.offHighlight();
+            }
         }
 
     }
@@ -190,6 +202,7 @@ ActiveToc = (function () {
     return {
         init: function (settings) {
             init(settings);
+            console.log(config);
         },
         unobserve: function () {
             unobserve();
@@ -211,12 +224,17 @@ try {
             * The container has to hold a set of links to headings (h2, h3, h4, ...) inside of the document. Each heading needs to be identified with the id attribute.
             * When scrolling contents or resizing the window, the links in the tocContainer will be assigned a combination of the CSS classes  
             * <ul>
-            * <li><code>is-visible</code> if the associated heading of the link is visible,</li>
-            * <li>><code>is-active</code> if the heading is not visible, but still can be considered active,</li>
-            * <li>><code>is-highlight</code> as the single one that´s suggested to be highlighted (to avoid highlighting multiple entries),</li>
+            * <li><code>is-visible</code> if the associated heading of the link is visible</li>
+            * <li>><code>is-active</code> if the heading is not visible, but still can be considered active</li>
+            * <li>><code>is-highlight</code> as the single one that´s suggested to be highlighted (to avoid highlighting multiple entries)</li>
             * </ul>
-            * @param {*} [settings] – Can be empty, a String, or a settings object. A String will be interpreted as a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_object_model/Locating_DOM_elements_using_selectors">selector</a> for the toc container. A settings object must contain a tocContainer property that will store the selector for the toc container.
-            * @param {String} [settings.tocContainer] - Specify the selector of the container that holds the links to the headings inside of your document. Default id is <code>#header</code>. If not specified the first html <code>header</code> tag will be used.
+            * @param {(string|Object)} [settings] – Optional: Can be empty, a String, or a settings object. A String will be interpreted as a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_object_model/Locating_DOM_elements_using_selectors">selector</a> for the toc container. A settings object must contain a tocContainer property that will store the selector for the toc container.
+            * @param {String} [settings.tocContainer] - Optional: Specify the selector of the container that holds the links to the headings inside of your document. Default id is <code>#header</code>. If not specified the first html <code>header</code> tag will be used.
+            * @param {IntersectionOptions} [settings.intersectionOptions] - Optional: The Intersection observer options as defined by the intersection observer API
+            * @param {function(Object)} [settings.onVisible] - Optional: A function that will be called when an element receives visible status. The visible element will be passed as an argument into the function. 
+            * @param {function(Object)} [settings.onActive] - Optional: A function that will be called when an element receives active status. The active element will be passed as an argument into the function. 
+            * @param {function(Object)} [settings.onHighlight] - Optional: A function that will be called when an element receives highlight status. The highlighted element will be passed as an argument into the function. 
+            * @param {function()} [settings.offHighlight] - Optional: A function that will be called when a highlighted element looses the highlight status and no new highlighted element is available. 
             */
             init: function (settings) {
                 if (!this.activeToc) {
@@ -247,3 +265,4 @@ try {
     //in non-node environment module is not defined and therefore
     //nothing is exported
 }
+

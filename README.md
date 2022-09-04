@@ -49,15 +49,20 @@ The container has to hold a set of links to headings (h2, h3, h4, ...) inside of
 When scrolling contents or resizing the window, the links in the tocContainer will be assigned a combination of the CSS classes  
 
 <ul>
-<li><code>is-visible</code> if the associated heading of the link is visible,</li>
-<li>><code>is-active</code> if the heading is not visible, but still can be considered active,</li>
-<li>><code>is-highlight</code> as the single one that´s suggested to be highlighted (to avoid highlighting multiple entries),</li>
+<li><code>is-visible</code> if the associated heading of the link is visible</li>
+<li>><code>is-active</code> if the heading is not visible, but still can be considered active</li>
+<li>><code>is-highlight</code> as the single one that´s suggested to be highlighted (to avoid highlighting multiple entries)</li>
 </ul>
 
 ### Parameters
 
--   `settings` **any?** – Can be empty, a String, or a settings object. A String will be interpreted as a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_object_model/Locating_DOM_elements_using_selectors">selector</a> for the toc container. A settings object must contain a tocContainer property that will store the selector for the toc container.
-    -   `settings.tocContainer` **[String][6]?** Specify the selector of the container that holds the links to the headings inside of your document. Default id is <code>#header</code>. If not specified the first html <code>header</code> tag will be used.
+-   `settings` **([string][6] \| [Object][7])?** – Optional: Can be empty, a String, or a settings object. A String will be interpreted as a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_object_model/Locating_DOM_elements_using_selectors">selector</a> for the toc container. A settings object must contain a tocContainer property that will store the selector for the toc container.
+    -   `settings.tocContainer` **[String][6]?** Optional: Specify the selector of the container that holds the links to the headings inside of your document. Default id is <code>#header</code>. If not specified the first html <code>header</code> tag will be used.
+    -   `settings.intersectionOptions` **IntersectionOptions?** Optional: The Intersection observer options as defined by the intersection observer API
+    -   `settings.onVisible` **function ([Object][7])?** Optional: A function that will be called when an element receives visible status. The visible element will be passed as an argument into the function.
+    -   `settings.onActive` **function ([Object][7])?** Optional: A function that will be called when an element receives active status. The active element will be passed as an argument into the function.
+    -   `settings.onHighlight` **function ([Object][7])?** Optional: A function that will be called when an element receives highlight status. The highlighted element will be passed as an argument into the function.
+    -   `settings.offHighlight` **function ()?** Optional: A function that will be called when a highlighted element looses the highlight status and no new highlighted element is available.
 
 ## destroy
 
@@ -78,3 +83,5 @@ Do no longer observe the headings of the document
 [5]: #unobserve
 
 [6]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+
+[7]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object

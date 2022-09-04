@@ -1,12 +1,12 @@
 {
   "name": "active-toc",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "Let scrolling highlight your toc entries",
   "main": "active-toc.js",
   "scripts": {
     "start": "run-p \"watch:*\"",
-    "serve": "run-p \"watch:*\"",
-    "watch:serve": "browser-sync start --server --files 'active-toc.*' 'index.html'",
+    "dev": "run-p \"watch:*\"",
+    "watch:dev": "browser-sync start --server --files 'active-toc.*' 'index.html'",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "minify active-toc.js > active-toc.min.js && documentation build active-toc.js -f md > README.md"
   },
