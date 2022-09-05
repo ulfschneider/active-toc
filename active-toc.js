@@ -202,7 +202,6 @@ ActiveToc = (function () {
     return {
         init: function (settings) {
             init(settings);
-            console.log(config);
         },
         unobserve: function () {
             unobserve();
@@ -225,8 +224,8 @@ try {
             * When scrolling contents or resizing the window, the links in the tocContainer will be assigned a combination of the CSS classes  
             * <ul>
             * <li><code>is-visible</code> if the associated heading of the link is visible</li>
-            * <li>><code>is-active</code> if the heading is not visible, but still can be considered active</li>
-            * <li>><code>is-highlight</code> as the single one that´s suggested to be highlighted (to avoid highlighting multiple entries)</li>
+            * <li><code>is-active</code> if the heading is not visible, but still can be considered active</li>
+            * <li><code>is-highlight</code> as the single one that´s suggested to be highlighted (to avoid highlighting multiple entries)</li>
             * </ul>
             * @param {(string|Object)} [settings] – Optional: Can be empty, a String, or a settings object. A String will be interpreted as a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_object_model/Locating_DOM_elements_using_selectors">selector</a> for the toc container. A settings object must contain a tocContainer property that will store the selector for the toc container.
             * @param {String} [settings.tocContainer] - Optional: Specify the selector of the container that holds the links to the headings inside of your document. Default id is <code>#header</code>. If not specified the first html <code>header</code> tag will be used.
