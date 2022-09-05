@@ -50,8 +50,8 @@ When scrolling contents or resizing the window, the links in the tocContainer wi
 
 <ul>
 <li><code>is-visible</code> if the associated heading of the link is visible</li>
-<li>><code>is-active</code> if the heading is not visible, but still can be considered active</li>
-<li>><code>is-highlight</code> as the single one that´s suggested to be highlighted (to avoid highlighting multiple entries)</li>
+<li><code>is-active</code> if the heading is not visible, but still can be considered active</li>
+<li><code>is-highlight</code> as the single one that´s suggested to be highlighted (to avoid highlighting multiple entries)</li>
 </ul>
 
 ### Parameters
