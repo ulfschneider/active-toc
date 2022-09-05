@@ -69,7 +69,7 @@ ActiveToc = (function () {
                 }
 
                 if (!tocContainer) {
-                    console.error('A toc container with id=[' + containerSelector + '] or the tag=<header> could not be found in the document');
+                    console.error('A toc container with selector=[' + containerSelector + '] or the tag=<header> could not be found in the document');
                     return;
                 }
             }
