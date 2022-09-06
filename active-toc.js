@@ -68,7 +68,7 @@ ActiveToc = (function () {
                 tocContainer = document.querySelector(containerSelector);                
 
                 if (!tocContainer) {
-                    console.error('A toc container with selector=[' + containerSelector + '] could not be found in the document');
+                    console.warn('A toc container with selector=[' + containerSelector + '] could not be found in the document');
                     return;
                 }
             }
