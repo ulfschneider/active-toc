@@ -1,7 +1,7 @@
 {
   "name": "active-toc",
-  "version": "0.6.2",
-  "description": "Let scrolling highlight your toc entries",
+  "version": "0.7.0",
+  "description": "Highlight your toc entries while scrolling",
   "main": "active-toc.js",
   "scripts": {
     "start": "run-p \"watch:*\"",
