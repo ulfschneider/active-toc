@@ -1,6 +1,6 @@
 {
   "name": "active-toc",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Highlight your toc entries while scrolling",
   "main": "active-toc.js",
   "scripts": {

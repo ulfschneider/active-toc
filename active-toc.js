@@ -57,19 +57,18 @@ ActiveToc = (function () {
 
         if (typeof config.tocContainer == 'string' || config.tocContainer instanceof String) {
             containerSelector = config.tocContainer;
-        } else {
+        } else if (config.tocContainer) {
             tocContainer = config.tocContainer;
+        } else {
+            containerSelector = 'header';
         }
 
         if (document.querySelector && window.IntersectionObserver) {
             if (containerSelector) {
-                tocContainer = document.querySelector(containerSelector);
-                if (!tocContainer) {
-                    tocContainer = document.querySelector('header');
-                }
+                tocContainer = document.querySelector(containerSelector);                
 
                 if (!tocContainer) {
-                    console.error('A toc container with selector=[' + containerSelector + '] or the tag=<header> could not be found in the document');
+                    console.error('A toc container with selector=[' + containerSelector + '] could not be found in the document');
                     return;
                 }
             }
