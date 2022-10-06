@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <title>ActiveToc Example</title>
 
-        <script src="active-toc.min.js"></script>
+        <script src="active-toc.js"></script>
     </head>
     <style>
         a {
@@ -55,7 +55,7 @@
             padding: 4px;
             position: fixed;
             bottom: 1em;
-            right:1em;
+            right: 1em;
         }
     </style>
 
@@ -191,13 +191,14 @@
     <script>
         ActiveToc.init({
             tocContainer: '#navigation',
-            onHighlight: function (element) {
-                console.log('highlight: ' + element.innerText);
+            onHighlight: function (toc, heading) {
+
+                console.log('highlight: ' + heading.innerText);
                 let indicator = document.querySelector('#highlight-indicator');
-                indicator.innerText = element.innerText;
+                indicator.innerText = heading.innerText;
                 indicator.style.display = 'inline-block';
             },
-            offHighlight: function() {
+            offHighlight: function () {
                 let indicator = document.querySelector('#highlight-indicator');
                 indicator.style.display = 'none';
             }

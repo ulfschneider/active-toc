@@ -12,28 +12,10 @@
 
 Make your table of contents (toc) active.
 
-Please visit <a href="https://ulf.codes/tools/active-toc/">ulf.codes/tools/active-toc</a> or 
-download the repo and open the file <code>index.html</code> to see the usage.
+Please visit <a href="https://ulf.codes/tools/active-toc/">ulf.codes/tools/active-toc</a> to see ActiveToc in action or 
+download the <a href="https://github.com/ulfschneider/active-toc">GitHub repo</a> and open the file <code>index.html</code> to see the usage.
 
-Install ActiveToc in your Node project with 
-
-<pre><code>
-npm i active-toc
-</code></pre>
-
-and use it inside your code via 
-
-<pre><code>
-const ActiveToc = require('active-toc');
-</code></pre>
-
-or, alternatively 
-
-<pre><code>
-import ActiveToc from 'active-toc';
-</code></pre>
-
-You can also use it by embedding the script <code>active-toc.min.js</code> in your web page.
+Embed the script <code>active-toc.min.js</code> in your web page.
 
 <pre><code>
 &lt;script src="active-toc.min.js">&lt;/script>
@@ -45,7 +27,7 @@ ActiveToc is using the <a href="https://developer.mozilla.org/en-US/docs/Web/API
 
 Without defining the toc container a call like <code>ActiveToc.init()</code> will search for an element
 with <code>id="header"</code> or a <code>header</code> tag and will make that element the container for the active toc.
-The container has to hold a set of links to headings (h2, h3, h4, ...) inside of the document. Each heading needs to be identified with the id attribute.
+The container has to hold a set of links to headings (h2, h3, h4, h5, h6) inside of the document. Each heading needs to be identified with the id attribute.
 When scrolling contents or resizing the window, the links in the tocContainer will be assigned a combination of the CSS classes  
 
 <ul>
@@ -53,6 +35,13 @@ When scrolling contents or resizing the window, the links in the tocContainer wi
 <li><code>is-active</code> if the heading is not visible, but still can be considered active</li>
 <li><code>is-highlight</code> as the single one that´s suggested to be highlighted (to avoid highlighting multiple entries)</li>
 </ul>
+In addition, the headings themself also get CSS classes assigned:
+<ul>
+<li><code>h-is-visible</code> if the heading visible</li>
+<li><code>h-is-active</code> if the heading is not visible, but still can be considered active</li>
+<li><code>h-is-highlight</code> as the single heading that´s suggested to be highlighted (to avoid highlighting multiple entries)</li>
+</ul>
+If no tocContainer can be found, the headings of the document alone will be analyzed and the <code>h-is-visible</code>, <code>h-is-active</code>, <code>h-is-highlight</code> classes will be assigned as appropriate to the headings.
 
 ### Parameters
 
