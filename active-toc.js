@@ -52,7 +52,10 @@ ActiveToc = (function () {
 
                 if (!tocContainer) {
                     console.log('A toc container with selector=[' + containerSelector + '] could not be found in the document');
-                    headings = [...document.querySelectorAll('h2, h3, h4, h5, h6')];
+                    if (settings.headless) {
+                        console.log('Working in headless mode');
+                        headings = [...document.querySelectorAll('h2, h3, h4, h5, h6')];
+                    }
                 } else {
                     links = [...tocContainer.querySelectorAll('a')];
                     links.forEach(link => {
@@ -260,9 +263,11 @@ try {
             * <li><code>h-is-active</code> if the heading is not visible, but still can be considered active</li>
             * <li><code>h-is-highlight</code> as the single heading that´s suggested to be highlighted (to avoid highlighting multiple entries)</li>
             * </ul>
-            * If no tocContainer can be found, the headings of the document alone will be analyzed and the <code>h-is-visible</code>, <code>h-is-active</code>, <code>h-is-highlight</code> classes will be assigned as appropriate to the headings.
+            * If no tocContainer can be found, the headings of the document will only be processed if <code>settings.headless</code> is <code>true</code>, otherwise the headings will be ignored.
+            * If <code>settings.headless</code> is true, the headings alone will be analyzed and the <code>h-is-visible</code>, <code>h-is-active</code>, <code>h-is-highlight</code> classes will be assigned as appropriate to the headings.
             * @param {(string|Object)} [settings] – Optional: Can be empty, a String, or a settings object. A String will be interpreted as a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_object_model/Locating_DOM_elements_using_selectors">selector</a> for the toc container. A settings object must contain a tocContainer property that will store the selector for the toc container.
-            * @param {String} [settings.tocContainer] - Optional: Specify the selector of the container that holds the links to the headings inside of your document. Default id is <code>#header</code>. If not specified the first html <code>header</code> tag will be used.
+            * @param {string} [settings.tocContainer] - Optional: Specify the selector of the container that holds the links to the headings inside of your document. Default id is <code>#header</code>. If not specified the first html <code>header</code> tag will be used.
+            * @param {boolean} [settings.headless=false] - Optional: If true, headings are processed without an associated tocContainer
             * @param {IntersectionOptions} [settings.intersectionOptions] - Optional: The Intersection observer options as defined by the intersection observer API
             * @param {function(Object, Object)} [settings.onVisible] - Optional: A function that will be called when an element receives visible status. The toc entry that received visible status and the associated heading will be passed as arguments into the function. 
             * @param {function(Object, Object)} [settings.onActive] - Optional: A function that will be called when an element receives active status. The toc entry that received active status and the associated heading will be passed as arguments into the function. 

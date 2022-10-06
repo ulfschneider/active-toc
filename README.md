@@ -41,12 +41,14 @@ In addition, the headings themself also get CSS classes assigned:
 <li><code>h-is-active</code> if the heading is not visible, but still can be considered active</li>
 <li><code>h-is-highlight</code> as the single heading that´s suggested to be highlighted (to avoid highlighting multiple entries)</li>
 </ul>
-If no tocContainer can be found, the headings of the document alone will be analyzed and the <code>h-is-visible</code>, <code>h-is-active</code>, <code>h-is-highlight</code> classes will be assigned as appropriate to the headings.
+If no tocContainer can be found, the headings of the document will only be processed if <code>settings.headless</code> is <code>true</code>, otherwise the headings will be ignored.
+If <code>settings.headless</code> is true, the headings alone will be analyzed and the <code>h-is-visible</code>, <code>h-is-active</code>, <code>h-is-highlight</code> classes will be assigned as appropriate to the headings.
 
 ### Parameters
 
 -   `settings` **([string][6] \| [Object][7])?** – Optional: Can be empty, a String, or a settings object. A String will be interpreted as a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_object_model/Locating_DOM_elements_using_selectors">selector</a> for the toc container. A settings object must contain a tocContainer property that will store the selector for the toc container.
-    -   `settings.tocContainer` **[String][6]?** Optional: Specify the selector of the container that holds the links to the headings inside of your document. Default id is <code>#header</code>. If not specified the first html <code>header</code> tag will be used.
+    -   `settings.tocContainer` **[string][6]?** Optional: Specify the selector of the container that holds the links to the headings inside of your document. Default id is <code>#header</code>. If not specified the first html <code>header</code> tag will be used.
+    -   `settings.headless` **[boolean][8]** Optional: If true, headings are processed without an associated tocContainer (optional, default `false`)
     -   `settings.intersectionOptions` **IntersectionOptions?** Optional: The Intersection observer options as defined by the intersection observer API
     -   `settings.onVisible` **function ([Object][7], [Object][7])?** Optional: A function that will be called when an element receives visible status. The toc entry that received visible status and the associated heading will be passed as arguments into the function.
     -   `settings.onActive` **function ([Object][7], [Object][7])?** Optional: A function that will be called when an element receives active status. The toc entry that received active status and the associated heading will be passed as arguments into the function.
@@ -74,3 +76,5 @@ Do no longer observe the headings of the document
 [6]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
 
 [7]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+
+[8]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
