@@ -294,8 +294,6 @@ try {
         }
     }
 } catch (e) {
-    console.log('Using ActiveToc in non-node environment');
-    //in non-node environment module is not defined and therefore
-    //nothing is exported
+    console.log('Using ActiveToc in non-module environment');
 }
 
