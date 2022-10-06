@@ -50,9 +50,9 @@ If <code>settings.headless</code> is true, the headings alone will be analyzed a
     -   `settings.tocContainer` **[string][6]?** Optional: Specify the selector of the container that holds the links to the headings inside of your document. Default id is <code>#header</code>. If not specified the first html <code>header</code> tag will be used.
     -   `settings.headless` **[boolean][8]** Optional: If true, headings are processed without an associated tocContainer (optional, default `false`)
     -   `settings.intersectionOptions` **IntersectionOptions?** Optional: The Intersection observer options as defined by the intersection observer API
-    -   `settings.onVisible` **function ([Object][7], [Object][7])?** Optional: A function that will be called when an element receives visible status. The toc entry that received visible status and the associated heading will be passed as arguments into the function.
-    -   `settings.onActive` **function ([Object][7], [Object][7])?** Optional: A function that will be called when an element receives active status. The toc entry that received active status and the associated heading will be passed as arguments into the function.
-    -   `settings.onHighlight` **function ([Object][7], [Object][7])?** Optional: A function that will be called when an element receives highlight status. The toc entry that received visible status and the associated heading will be passed as arguments into the function.
+    -   `settings.onVisible` **function ([Object][7], [Object][7])?** Optional: A function that will be called when an element receives visible status. The toc entry that received visible status (null if the entry doesn´t exist) and the associated heading will be passed as arguments into the function.
+    -   `settings.onActive` **function ([Object][7], [Object][7])?** Optional: A function that will be called when an element receives active status. The toc entry that received active status (null if the entry doesn´t exist) and the associated heading will be passed as arguments into the function.
+    -   `settings.onHighlight` **function ([Object][7], [Object][7])?** Optional: A function that will be called when an element receives highlight status. The toc entry that received visible status (null if the entry doesn´t exit) and the associated heading will be passed as arguments into the function.
     -   `settings.offHighlight` **function ()?** Optional: A function that will be called when a highlighted element looses the highlight status and no new highlighted element is available.
 
 ## destroy

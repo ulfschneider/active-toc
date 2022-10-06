@@ -269,9 +269,9 @@ try {
             * @param {string} [settings.tocContainer] - Optional: Specify the selector of the container that holds the links to the headings inside of your document. Default id is <code>#header</code>. If not specified the first html <code>header</code> tag will be used.
             * @param {boolean} [settings.headless=false] - Optional: If true, headings are processed without an associated tocContainer
             * @param {IntersectionOptions} [settings.intersectionOptions] - Optional: The Intersection observer options as defined by the intersection observer API
-            * @param {function(Object, Object)} [settings.onVisible] - Optional: A function that will be called when an element receives visible status. The toc entry that received visible status and the associated heading will be passed as arguments into the function. 
-            * @param {function(Object, Object)} [settings.onActive] - Optional: A function that will be called when an element receives active status. The toc entry that received active status and the associated heading will be passed as arguments into the function. 
-            * @param {function(Object, Object)} [settings.onHighlight] - Optional: A function that will be called when an element receives highlight status. The toc entry that received visible status and the associated heading will be passed as arguments into the function. 
+            * @param {function(Object, Object)} [settings.onVisible] - Optional: A function that will be called when an element receives visible status. The toc entry that received visible status (null if the entry doesn´t exist) and the associated heading will be passed as arguments into the function. 
+            * @param {function(Object, Object)} [settings.onActive] - Optional: A function that will be called when an element receives active status. The toc entry that received active status (null if the entry doesn´t exist) and the associated heading will be passed as arguments into the function. 
+            * @param {function(Object, Object)} [settings.onHighlight] - Optional: A function that will be called when an element receives highlight status. The toc entry that received visible status (null if the entry doesn´t exit) and the associated heading will be passed as arguments into the function. 
             * @param {function()} [settings.offHighlight] - Optional: A function that will be called when a highlighted element looses the highlight status and no new highlighted element is available. 
             */
             init: function (settings) {
